@@ -29,7 +29,16 @@ const Users = () => {
         error={!!errors.email}
         helperText={errors.email?.message}
       />
-      <RHFAutoComplete<UserSchemaType> name="states" />
+      <RHFAutoComplete<UserSchemaType>
+        name="states"
+        options={[
+          { id: "1", label: "California" },
+          { id: "2", label: "Texas" },
+          { id: "3", label: "Florida" },
+          { id: "4", label: "New York" },
+        ]}
+        label="States"
+      />
     </Stack>
   );
 };
