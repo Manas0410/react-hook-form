@@ -7,7 +7,7 @@ const RHFUsersProvider = () => {
   const methods = useForm<UserSchemaType>({
     mode: "all",
     resolver: zodResolver(UserSchema),
-    // defaultValues: defaultValues,
+    defaultValues: defaultValues,
   });
   return (
     <FormProvider {...methods}>
