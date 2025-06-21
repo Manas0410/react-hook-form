@@ -9,6 +9,10 @@ export const UserSchema = z.object({
     .refine((email) => patterns.email.test(email), {
       message: "Invalid email format",
     }),
+  states: z
+    .array(z.string())
+    .min(1, "At least one state is required")
+    .max(2, "A maximum of 2 states can be selected"),
 });
 
 export type UserSchemaType = z.infer<typeof UserSchema>;

@@ -2,6 +2,7 @@ import { useFormContext } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/material";
 import { UserSchemaType } from "../Types/Schema";
+import RHFAutoComplete from "../../Components/RHFAutoComplete";
 
 const Users = () => {
   const {
@@ -28,6 +29,7 @@ const Users = () => {
         error={!!errors.email}
         helperText={errors.email?.message}
       />
+      <RHFAutoComplete<UserSchemaType> name="states" />
     </Stack>
   );
 };
