@@ -1,9 +1,9 @@
-import Users from "./Users/Components/Users";
+import RHFUsersProvider from "./Users/Components/RHFUsersProvider";
 
 const App = () => {
   return (
     <div>
-      <Users />
+      <RHFUsersProvider />
     </div>
   );
 };
