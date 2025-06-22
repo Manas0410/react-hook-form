@@ -14,6 +14,7 @@ const RHFUsersProvider = () => {
     <FormProvider {...methods}>
       <Users />
       <DevTool control={methods.control} />
+      {/* watch is also there */}
     </FormProvider>
   );
 };
