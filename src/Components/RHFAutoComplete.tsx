@@ -46,7 +46,7 @@ const RHFAutoComplete = <T extends FieldValues>({
             />
           )}
           renderOption={(props, option, { selected }) => (
-            <Box component="li" {...props}>
+            <Box component="li" {...props} key={option.id}>
               <Checkbox
                 icon={<CheckBoxOutlineBlankIcon />}
                 checkedIcon={<CheckBoxIcon />}
