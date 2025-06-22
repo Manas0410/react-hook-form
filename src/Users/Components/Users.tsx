@@ -14,6 +14,7 @@ import { RHFRadioGroup } from "../../Components/RHFRadioGroup";
 import { RHFCheckBox } from "../../Components/RHFCheckBox";
 import { RHFDateTimePicker } from "../../Components/RHFDateTimePicker";
 import { RHFDateRangePicker } from "../../Components/RHFDateRangePicker";
+import { RHFSlider } from "../../Components/RHFSlider";
 
 const Users = () => {
   const {
@@ -72,6 +73,7 @@ const Users = () => {
         name="formerEmploymentPeriod"
         label="Former Employment Period"
       />
+      <RHFSlider<UserSchemaType> name="salaryRange" label="Salary Range" />
     </Stack>
   );
 };
