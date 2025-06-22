@@ -17,6 +17,10 @@ export const UserSchema = z.object({
   gender: z.string().min(1, "Gender is required"),
   skills: z.array(z.string()).max(2, "A maximum of 2 skills can be selected"),
   registrationDateAndTime: z.date(),
+  formerEmploymentPeriod: z
+    .array(z.date())
+    .min(2, "At least two dates are required for employment period")
+    .max(2, "A maximum of two dates can be selected for employment period"),
 });
 
 export type UserSchemaType = z.infer<typeof UserSchema>;
@@ -29,4 +33,5 @@ export const defaultValues: UserSchemaType = {
   gender: "",
   skills: [],
   registrationDateAndTime: new Date(),
+  formerEmploymentPeriod: [new Date(), new Date()],
 };
