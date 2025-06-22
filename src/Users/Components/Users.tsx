@@ -36,8 +36,8 @@ const Users = () => {
 
   return (
     <Stack sx={{ gap: 2 }}>
-      <RHFTextField<UserSchemaType> name="name" />
-      <RHFTextField<UserSchemaType> name="email" />
+      <RHFTextField<UserSchemaType> name="name" label="Name" />
+      <RHFTextField<UserSchemaType> name="email" label="Email" />
       <RHFAutoComplete<UserSchemaType>
         name="states"
         options={statesQuery.data || []}

@@ -1,11 +1,14 @@
-import { TextField } from "@mui/material";
+import { TextField, TextFieldProps } from "@mui/material";
 import { Controller, FieldValues, Path, useFormContext } from "react-hook-form";
 
 type Props<T extends FieldValues> = {
   name: Path<T>;
-};
+} & Pick<TextFieldProps, "label" | "variant" | "type" | "placeholder">;
 
-export function RHFTextField<T extends FieldValues>({ name }: Props<T>) {
+export function RHFTextField<T extends FieldValues>({
+  name,
+  ...props
+}: Props<T>) {
   const { control } = useFormContext<T>();
 
   return (
@@ -15,6 +18,7 @@ export function RHFTextField<T extends FieldValues>({ name }: Props<T>) {
       render={({ field, fieldState }) => (
         <TextField
           {...field}
+          {...props}
           error={!!fieldState.error}
           helperText={fieldState.error?.message}
         />
