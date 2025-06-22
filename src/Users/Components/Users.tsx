@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/material";
 import { UserSchemaType } from "../Types/Schema";
 import RHFAutoComplete from "../../Components/RHFAutoComplete";
+import { useStates } from "../Services/queries";
 
 const Users = () => {
   const {
@@ -10,6 +11,8 @@ const Users = () => {
     handleSubmit,
     formState: { errors },
   } = useFormContext<UserSchemaType>();
+
+  const statesQuery = useStates();
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -31,12 +34,7 @@ const Users = () => {
       />
       <RHFAutoComplete<UserSchemaType>
         name="states"
-        options={[
-          { id: "1", label: "California" },
-          { id: "2", label: "Texas" },
-          { id: "3", label: "Florida" },
-          { id: "4", label: "New York" },
-        ]}
+        options={statesQuery.data || []}
         label="States"
       />
     </Stack>
