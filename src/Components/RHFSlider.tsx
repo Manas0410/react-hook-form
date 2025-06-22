@@ -1,4 +1,4 @@
-import { Slide, Slider, Typography } from "@mui/material";
+import { Slider, Typography } from "@mui/material";
 import { Controller, FieldValues, Path, useFormContext } from "react-hook-form";
 
 type Props<T extends FieldValues> = {

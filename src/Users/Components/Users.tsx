@@ -15,6 +15,7 @@ import { RHFCheckBox } from "../../Components/RHFCheckBox";
 import { RHFDateTimePicker } from "../../Components/RHFDateTimePicker";
 import { RHFDateRangePicker } from "../../Components/RHFDateRangePicker";
 import { RHFSlider } from "../../Components/RHFSlider";
+import { RHFSwitch } from "../../Components/RHFSwitch";
 
 const Users = () => {
   const {
@@ -74,6 +75,7 @@ const Users = () => {
         label="Former Employment Period"
       />
       <RHFSlider<UserSchemaType> name="salaryRange" label="Salary Range" />
+      <RHFSwitch<UserSchemaType> name="isTeacher" label="Are you a Teacher" />
     </Stack>
   );
 };
