@@ -15,6 +15,7 @@ export const UserSchema = z.object({
     .max(2, "A maximum of 2  states can be selected"),
   languagesSpoken: z.array(z.string()),
   gender: z.string().min(1, "Gender is required"),
+  skills: z.array(z.string()).max(2, "A maximum of 2 skills can be selected"),
 });
 
 export type UserSchemaType = z.infer<typeof UserSchema>;
@@ -25,4 +26,5 @@ export const defaultValues: UserSchemaType = {
   states: [],
   languagesSpoken: [],
   gender: "",
+  skills: [],
 };

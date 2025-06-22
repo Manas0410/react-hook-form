@@ -3,9 +3,15 @@ import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/material";
 import { UserSchemaType } from "../Types/Schema";
 import RHFAutoComplete from "../../Components/RHFAutoComplete";
-import { useGenders, useLanguages, useStates } from "../Services/queries";
+import {
+  useGenders,
+  useLanguages,
+  useSkills,
+  useStates,
+} from "../Services/queries";
 import { RHFToggleButtonGroup } from "../../Components/RHFToggleButtonGroup";
 import { RHFRadioGroup } from "../../Components/RHFRadioGroup";
+import { RHFCheckBox } from "../../Components/RHFCheckBox";
 
 const Users = () => {
   const {
@@ -17,6 +23,7 @@ const Users = () => {
   const statesQuery = useStates();
   const languageQuery = useLanguages();
   const gendersQuery = useGenders();
+  const skillsQuery = useSkills();
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -49,6 +56,11 @@ const Users = () => {
         name="gender"
         options={gendersQuery.data || []}
         label="Gender"
+      />
+      <RHFCheckBox<UserSchemaType>
+        name="skills"
+        options={skillsQuery.data || []}
+        label="Skills"
       />
     </Stack>
   );
