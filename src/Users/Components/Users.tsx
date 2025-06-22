@@ -12,6 +12,7 @@ import {
 import { RHFToggleButtonGroup } from "../../Components/RHFToggleButtonGroup";
 import { RHFRadioGroup } from "../../Components/RHFRadioGroup";
 import { RHFCheckBox } from "../../Components/RHFCheckBox";
+import { RHFDateTimePicker } from "../../Components/RHFDateTimePicker";
 
 const Users = () => {
   const {
@@ -61,6 +62,10 @@ const Users = () => {
         name="skills"
         options={skillsQuery.data || []}
         label="Skills"
+      />
+      <RHFDateTimePicker<UserSchemaType>
+        name="registrationDateAndTime"
+        label="Registration Date and Time"
       />
     </Stack>
   );
