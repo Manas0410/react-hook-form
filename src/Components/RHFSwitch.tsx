@@ -1,11 +1,5 @@
-import { FormControlLabel, Slider, Switch, Typography } from "@mui/material";
-import {
-  Controller,
-  FieldValues,
-  Form,
-  Path,
-  useFormContext,
-} from "react-hook-form";
+import { FormControlLabel, Switch } from "@mui/material";
+import { Controller, FieldValues, Path, useFormContext } from "react-hook-form";
 
 type Props<T extends FieldValues> = {
   name: Path<T>;
