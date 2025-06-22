@@ -3,8 +3,9 @@ import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/material";
 import { UserSchemaType } from "../Types/Schema";
 import RHFAutoComplete from "../../Components/RHFAutoComplete";
-import { useLanguages, useStates } from "../Services/queries";
+import { useGenders, useLanguages, useStates } from "../Services/queries";
 import { RHFToggleButtonGroup } from "../../Components/RHFToggleButtonGroup";
+import { RHFRadioGroup } from "../../Components/RHFRadioGroup";
 
 const Users = () => {
   const {
@@ -15,6 +16,7 @@ const Users = () => {
 
   const statesQuery = useStates();
   const languageQuery = useLanguages();
+  const gendersQuery = useGenders();
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -42,6 +44,11 @@ const Users = () => {
       <RHFToggleButtonGroup<UserSchemaType>
         name="languagesSpoken"
         options={languageQuery.data || []}
+      />
+      <RHFRadioGroup<UserSchemaType>
+        name="gender"
+        options={gendersQuery.data || []}
+        label="Gender"
       />
     </Stack>
   );

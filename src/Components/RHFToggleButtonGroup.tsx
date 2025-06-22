@@ -24,7 +24,7 @@ export function RHFToggleButtonGroup<T extends FieldValues>({
               onChange(newValue);
             }
           }}
-          value={value.length ? value : [options?.[0].id]}
+          value={value.length ? value : [options?.[0]?.id]}
           {...restField}
         >
           {options?.map((option) => (
