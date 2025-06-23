@@ -41,7 +41,11 @@ export const UserSchema = z
       z.object({ isTeacher: z.literal(false) }),
       z.object({
         isTeacher: z.literal(true),
-        students: z.array(z.string()),
+        students: z.array(
+          z.object({
+            name: z.string().min(4, "minimum 4 characters are required"),
+          })
+        ),
       }),
     ])
   );
@@ -59,6 +63,5 @@ export const defaultValues: UserSchemaType = {
   formerEmploymentPeriod: [new Date(), new Date()],
   salaryRange: [0, 2000],
   variant: "create",
-  isTeacher: true,
-  students: [],
+  isTeacher: false,
 };
