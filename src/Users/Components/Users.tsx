@@ -1,6 +1,6 @@
 import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import { Button, Container, Stack } from "@mui/material";
-import { UserSchemaType } from "../Types/Schema";
+import { defaultValues, UserSchemaType } from "../Types/Schema";
 import RHFAutoComplete from "../../Components/RHFAutoComplete";
 import {
   useGenders,
@@ -16,11 +16,10 @@ import { RHFDateRangePicker } from "../../Components/RHFDateRangePicker";
 import { RHFSlider } from "../../Components/RHFSlider";
 import { RHFSwitch } from "../../Components/RHFSwitch";
 import { RHFTextField } from "../../Components/RHFTextField";
-import { fi } from "date-fns/locale";
 import { useEffect } from "react";
 
 const Users = () => {
-  const { control, unregister } = useFormContext<UserSchemaType>();
+  const { control, unregister, reset } = useFormContext<UserSchemaType>();
 
   const statesQuery = useStates();
   const languageQuery = useLanguages();
@@ -29,6 +28,10 @@ const Users = () => {
 
   const onSubmit = (data: any) => {
     console.log(data);
+  };
+
+  const handleReset = () => {
+    reset(defaultValues);
   };
 
   const { append, fields, remove, replace } = useFieldArray({
@@ -105,9 +108,12 @@ const Users = () => {
           </>
         ))}
 
-        <Stack
-          sx={{ flexDirection: "row", justifyContent: "space-between" }}
-        ></Stack>
+        <Stack sx={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Button type="submit">New User</Button>
+          <Button type="button" onClick={handleReset}>
+            Reset
+          </Button>
+        </Stack>
       </Stack>
     </Container>
   );
