@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Option } from "../../Types/options";
 import { APIGet } from "../Types/APITypes";
+import { UserSchemaType } from "../Types/Schema";
 
 export const useStates = () => {
   return useQuery({
@@ -56,5 +57,34 @@ export const useUsers = () => {
             } satisfies Option)
         )
       ),
+  });
+};
+
+export const useUser = (id: string) => {
+  return useQuery({
+    queryKey: ["user", { id }],
+    queryFn: async (): Promise<UserSchemaType> => {
+      const { data } = await axios.get<APIGet>(
+        `http://localhost:8080/users/${id}`
+      );
+      return {
+        variant: "edit",
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        states: data.states,
+        languagesSpoken: data.languagesSpoken,
+        formerEmploymentPeriod: [
+          new Date(data.formerEmploymentPeriod[0]),
+          new Date(data.formerEmploymentPeriod[1]),
+        ],
+        registrationDateAndTime: new Date(data.registrationDateAndTime),
+        salaryRange: [data.salaryRange[0], data.salaryRange[1]],
+        gender: data.gender,
+        skills: data.skills,
+        isTeacher: data.isTeacher,
+        students: data.students,
+      };
+    },
   });
 };

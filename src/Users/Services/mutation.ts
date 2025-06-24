@@ -5,7 +5,7 @@ import { UserSchemaType } from "../Types/Schema";
 export const useCreateUser = () => {
   return useMutation({
     mutationFn: async (data: UserSchemaType) => {
-      await axios.post("http://localhost:8080/users", data);
+      await axios.post("http://localhost:8080/users ", data);
     },
   });
 };

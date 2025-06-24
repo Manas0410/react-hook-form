@@ -1,5 +1,13 @@
 import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
-import { Button, Container, Stack } from "@mui/material";
+import {
+  Button,
+  Container,
+  List,
+  ListItem,
+  ListItemButton,
+  ListSubheader,
+  Stack,
+} from "@mui/material";
 import { defaultValues, UserSchemaType } from "../Types/Schema";
 import RHFAutoComplete from "../../Components/RHFAutoComplete";
 import {
@@ -7,6 +15,8 @@ import {
   useLanguages,
   useSkills,
   useStates,
+  useUser,
+  useUsers,
 } from "../Services/queries";
 import { RHFToggleButtonGroup } from "../../Components/RHFToggleButtonGroup";
 import { RHFRadioGroup } from "../../Components/RHFRadioGroup";
@@ -25,6 +35,19 @@ const Users = () => {
   const languageQuery = useLanguages();
   const gendersQuery = useGenders();
   const skillsQuery = useSkills();
+  const usersQuery = useUsers();
+  const userQuery = useUser();
+
+  const handleUserClick = (id: string) => {
+    // const user = usersQuery.data?.find((user) => user.id === id);
+    // if (user) {
+    //   reset({
+    //     ...defaultValues,
+    //     ...user,
+    //     isTeacher: false, // Reset isTeacher to false when a user is selected
+    //   });
+    // }
+  };
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -51,6 +74,20 @@ const Users = () => {
 
   return (
     <Container maxWidth="sm" component={"form"}>
+      <List subheader={<ListSubheader>USERS</ListSubheader>}>
+        {usersQuery.data?.map((user) => (
+          <ListItem disablePadding key={user.id}>
+            <ListItemButton
+              onClick={() => {
+                handleUserClick(user.id);
+              }}
+            >
+              {user.label}
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+
       <Stack sx={{ gap: 2 }}>
         <RHFTextField<UserSchemaType> name="name" label="Name" />
         <RHFTextField<UserSchemaType> name="email" label="Email" />
