@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
   ListItemButton,
+  ListItemText,
   ListSubheader,
   Stack,
 } from "@mui/material";
@@ -29,24 +30,19 @@ import { RHFTextField } from "../../Components/RHFTextField";
 import { useEffect } from "react";
 
 const Users = () => {
-  const { control, unregister, reset } = useFormContext<UserSchemaType>();
+  const { control, unregister, reset, setValue } =
+    useFormContext<UserSchemaType>();
+  const id = useWatch({ control, name: "id" });
 
   const statesQuery = useStates();
   const languageQuery = useLanguages();
   const gendersQuery = useGenders();
   const skillsQuery = useSkills();
   const usersQuery = useUsers();
-  const userQuery = useUser();
+  const userQuery = useUser(id);
 
   const handleUserClick = (id: string) => {
-    // const user = usersQuery.data?.find((user) => user.id === id);
-    // if (user) {
-    //   reset({
-    //     ...defaultValues,
-    //     ...user,
-    //     isTeacher: false, // Reset isTeacher to false when a user is selected
-    //   });
-    // }
+    setValue("id", id);
   };
 
   const onSubmit = (data: any) => {
@@ -73,83 +69,89 @@ const Users = () => {
   }, [isTeacher, replace, unregister]);
 
   return (
-    <Container maxWidth="sm" component={"form"}>
-      <List subheader={<ListSubheader>USERS</ListSubheader>}>
-        {usersQuery.data?.map((user) => (
-          <ListItem disablePadding key={user.id}>
-            <ListItemButton
-              onClick={() => {
-                handleUserClick(user.id);
-              }}
-            >
-              {user.label}
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+    <Container maxWidth="sm" sx={{ marginBottom: 100 }} component={"form"}>
+      <Stack sx={{ flexDirection: "row", gap: 2 }}>
+        <List subheader={<ListSubheader>USERS</ListSubheader>}>
+          {usersQuery.data?.map((user) => (
+            <ListItem disablePadding key={user.id}>
+              <ListItemButton
+                onClick={() => {
+                  handleUserClick(user.id);
+                }}
+                selected={user.id === id}
+              >
+                <ListItemText primary={user.label} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
 
-      <Stack sx={{ gap: 2 }}>
-        <RHFTextField<UserSchemaType> name="name" label="Name" />
-        <RHFTextField<UserSchemaType> name="email" label="Email" />
-        <RHFAutoComplete<UserSchemaType>
-          name="states"
-          options={statesQuery.data || []}
-          label="States"
-        />
-        <RHFToggleButtonGroup<UserSchemaType>
-          name="languagesSpoken"
-          options={languageQuery.data || []}
-        />
-        <RHFRadioGroup<UserSchemaType>
-          name="gender"
-          options={gendersQuery.data || []}
-          label="Gender"
-        />
-        <RHFCheckBox<UserSchemaType>
-          name="skills"
-          options={skillsQuery.data || []}
-          label="Skills"
-        />
-        <RHFDateTimePicker<UserSchemaType>
-          name="registrationDateAndTime"
-          label="Registration Date and Time"
-        />
-        <RHFDateRangePicker<UserSchemaType>
-          name="formerEmploymentPeriod"
-          label="Former Employment Period"
-        />
-        <RHFSlider<UserSchemaType> name="salaryRange" label="Salary Range" />
-        <RHFSwitch<UserSchemaType> name="isTeacher" label="Are you a Teacher" />
+        <Stack sx={{ gap: 2 }}>
+          <RHFTextField<UserSchemaType> name="name" label="Name" />
+          <RHFTextField<UserSchemaType> name="email" label="Email" />
+          <RHFAutoComplete<UserSchemaType>
+            name="states"
+            options={statesQuery.data || []}
+            label="States"
+          />
+          <RHFToggleButtonGroup<UserSchemaType>
+            name="languagesSpoken"
+            options={languageQuery.data || []}
+          />
+          <RHFRadioGroup<UserSchemaType>
+            name="gender"
+            options={gendersQuery.data || []}
+            label="Gender"
+          />
+          <RHFCheckBox<UserSchemaType>
+            name="skills"
+            options={skillsQuery.data || []}
+            label="Skills"
+          />
+          <RHFDateTimePicker<UserSchemaType>
+            name="registrationDateAndTime"
+            label="Registration Date and Time"
+          />
+          <RHFDateRangePicker<UserSchemaType>
+            name="formerEmploymentPeriod"
+            label="Former Employment Period"
+          />
+          <RHFSlider<UserSchemaType> name="salaryRange" label="Salary Range" />
+          <RHFSwitch<UserSchemaType>
+            name="isTeacher"
+            label="Are you a Teacher"
+          />
 
-        {isTeacher && (
-          <Button onClick={() => append({ name: "" })} type="button">
-            Add New Student
-          </Button>
-        )}
-
-        {fields.map((field, index) => (
-          <>
-            <RHFTextField<UserSchemaType>
-              key={field.id}
-              name={`students.${index}.name`}
-              label="Student Name"
-            />
-            <Button
-              key={`remove-${field.id}`}
-              onClick={() => remove(index)}
-              type="button"
-              color="error"
-            >
-              Remove Student
+          {isTeacher && (
+            <Button onClick={() => append({ name: "" })} type="button">
+              Add New Student
             </Button>
-          </>
-        ))}
+          )}
 
-        <Stack sx={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Button type="submit">New User</Button>
-          <Button type="button" onClick={handleReset}>
-            Reset
-          </Button>
+          {fields.map((field, index) => (
+            <>
+              <RHFTextField<UserSchemaType>
+                key={field.id}
+                name={`students.${index}.name`}
+                label="Student Name"
+              />
+              <Button
+                key={`remove-${field.id}`}
+                onClick={() => remove(index)}
+                type="button"
+                color="error"
+              >
+                Remove Student
+              </Button>
+            </>
+          ))}
+
+          <Stack sx={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <Button type="submit">New User</Button>
+            <Button type="button" onClick={handleReset}>
+              Reset
+            </Button>
+          </Stack>
         </Stack>
       </Stack>
     </Container>
