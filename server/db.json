@@ -275,6 +275,39 @@
         }
       ],
       "id": 6
+    },
+    {
+      "name": "asd",
+      "email": "manas2@mail.com",
+      "states": [
+        "2"
+      ],
+      "languagesSpoken": [],
+      "gender": "1",
+      "skills": [],
+      "registrationDateAndTime": "2025-06-24T10:34:30.831Z",
+      "formerEmploymentPeriod": [
+        "2025-06-24T10:34:30.831Z",
+        "2025-06-24T10:34:30.831Z"
+      ],
+      "salaryRange": [
+        0,
+        2000
+      ],
+      "variant": "create",
+      "isTeacher": true,
+      "students": [
+        {
+          "name": "aaaa"
+        },
+        {
+          "name": "bbbb"
+        },
+        {
+          "name": "cccc"
+        }
+      ],
+      "id": 7
     }
   ]
 }

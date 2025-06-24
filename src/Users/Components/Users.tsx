@@ -33,7 +33,7 @@ import { RHFSwitch } from "../../Components/RHFSwitch";
 import { RHFTextField } from "../../Components/RHFTextField";
 import { useEffect } from "react";
 import { useCreateUser, useEditUser } from "../Services/mutation";
-import { defaultValues, UserSchema, UserSchemaType } from "../Types/schema";
+import { defaultValues, UserSchemaType } from "../Types/schema";
 
 const Users = () => {
   const { control, unregister, reset, setValue, handleSubmit } =
@@ -64,16 +64,18 @@ const Users = () => {
     }
   };
 
-  const handleReset = () => {
-    reset(defaultValues);
-  };
-
   const { append, fields, remove, replace } = useFieldArray({
     control,
     name: "students",
   });
 
   const isTeacher = useWatch({ control, name: "isTeacher" });
+
+  const handleReset = () => {
+    reset(defaultValues);
+    replace([]);
+    unregister("students");
+  };
 
   useEffect(() => {
     if (userQuery.data) {
