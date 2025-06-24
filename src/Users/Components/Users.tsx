@@ -14,7 +14,6 @@ import {
   ListSubheader,
   Stack,
 } from "@mui/material";
-import { defaultValues, UserSchemaType } from "../Types/Schema";
 import RHFAutoComplete from "../../Components/RHFAutoComplete";
 import {
   useGenders,
@@ -34,6 +33,7 @@ import { RHFSwitch } from "../../Components/RHFSwitch";
 import { RHFTextField } from "../../Components/RHFTextField";
 import { useEffect } from "react";
 import { useCreateUser } from "../Services/mutation";
+import { defaultValues, UserSchemaType } from "../Types/schema";
 
 const Users = () => {
   const { control, unregister, reset, setValue, handleSubmit } =

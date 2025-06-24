@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Option } from "../../Types/options";
 import { APIGet } from "../Types/APITypes";
-import { UserSchemaType } from "../Types/Schema";
+import { UserSchemaType } from "../Types/schema";
 
 export const useStates = () => {
   return useQuery({
