@@ -53,7 +53,7 @@ export const useUsers = () => {
           (user) =>
             ({
               label: user.name,
-              id: user.id,
+              id: user.id.toString(),
             } satisfies Option)
         )
       ),
@@ -69,7 +69,7 @@ export const useUser = (id: string) => {
       );
       return {
         variant: "edit",
-        id: data.id,
+        id: data.id.toString(),
         name: data.name,
         email: data.email,
         states: data.states,

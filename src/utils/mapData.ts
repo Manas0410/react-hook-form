@@ -28,7 +28,7 @@ export const mapData = (data: UserSchemaType): APICreateEdit => {
     case "edit":
       return {
         ...common,
-        id: data.id,
+        id: Number(data.id),
         variant: data.variant,
       };
   }

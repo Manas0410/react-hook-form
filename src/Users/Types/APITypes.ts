@@ -4,7 +4,7 @@ type Create = {
 
 type Edit = {
   variant: "edit";
-  id: string;
+  id: number;
 };
 
 export type commonFields = {

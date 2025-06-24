@@ -32,8 +32,8 @@ import { RHFSlider } from "../../Components/RHFSlider";
 import { RHFSwitch } from "../../Components/RHFSwitch";
 import { RHFTextField } from "../../Components/RHFTextField";
 import { useEffect } from "react";
-import { useCreateUser } from "../Services/mutation";
-import { defaultValues, UserSchemaType } from "../Types/schema";
+import { useCreateUser, useEditUser } from "../Services/mutation";
+import { defaultValues, UserSchema, UserSchemaType } from "../Types/schema";
 
 const Users = () => {
   const { control, unregister, reset, setValue, handleSubmit } =
@@ -50,6 +50,7 @@ const Users = () => {
   const userQuery = useUser(id);
 
   const createUserMutation = useCreateUser();
+  const editUserMutation = useEditUser();
 
   const handleUserClick = (id: string) => {
     setValue("id", id);
@@ -59,7 +60,7 @@ const Users = () => {
     if (variant === "create") {
       createUserMutation.mutate(data);
     } else if (variant === "edit") {
-      // Edit user logic
+      editUserMutation.mutate(data);
     }
   };
 
@@ -172,7 +173,16 @@ const Users = () => {
           ))}
 
           <Stack sx={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Button type="submit">New User</Button>
+            <Button type="submit" variant="contained">
+              {variant === "create" ? "Create User" : "Edit User"}
+            </Button>
+            {/* <Button
+              onClick={() => {
+                UserSchema.parse(value);
+              }}
+            >
+              Parse
+            </Button> */}
             <Button type="button" onClick={handleReset}>
               Reset
             </Button>

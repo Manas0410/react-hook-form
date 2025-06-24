@@ -164,7 +164,7 @@
       "id": 3
     },
     {
-      "name": "Manas Srivastava",
+      "name": "arjun Srivastava",
       "email": "manasshrivastava0410@gmail.com",
       "states": [
         "1",
@@ -180,16 +180,15 @@
         "1",
         "4"
       ],
-      "registrationDateAndTime": "2025-06-24T08:12:44.587Z",
+      "registrationDateAndTime": "Tue Jun 24 2025 13:42:44 GMT+0530 (India Standard Time)",
       "formerEmploymentPeriod": [
-        "2025-06-24T08:12:44.587Z",
-        "2025-06-24T08:12:44.587Z"
+        "Tue Jun 24 2025 13:42:44 GMT+0530 (India Standard Time)",
+        "Tue Jun 24 2025 13:42:44 GMT+0530 (India Standard Time)"
       ],
       "salaryRange": [
         90,
         100
       ],
-      "variant": "create",
       "isTeacher": true,
       "students": [
         {
