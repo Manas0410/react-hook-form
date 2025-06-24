@@ -1,4 +1,9 @@
-import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
+import {
+  SubmitHandler,
+  useFieldArray,
+  useFormContext,
+  useWatch,
+} from "react-hook-form";
 import {
   Button,
   Container,
@@ -28,11 +33,14 @@ import { RHFSlider } from "../../Components/RHFSlider";
 import { RHFSwitch } from "../../Components/RHFSwitch";
 import { RHFTextField } from "../../Components/RHFTextField";
 import { useEffect } from "react";
+import { useCreateUser } from "../Services/mutation";
 
 const Users = () => {
-  const { control, unregister, reset, setValue } =
+  const { control, unregister, reset, setValue, handleSubmit } =
     useFormContext<UserSchemaType>();
+
   const id = useWatch({ control, name: "id" });
+  const variant = useWatch({ control, name: "variant" });
 
   const statesQuery = useStates();
   const languageQuery = useLanguages();
@@ -41,12 +49,18 @@ const Users = () => {
   const usersQuery = useUsers();
   const userQuery = useUser(id);
 
+  const createUserMutation = useCreateUser();
+
   const handleUserClick = (id: string) => {
     setValue("id", id);
   };
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<UserSchemaType> = (data) => {
+    if (variant === "create") {
+      createUserMutation.mutate(data);
+    } else if (variant === "edit") {
+      // Edit user logic
+    }
   };
 
   const handleReset = () => {
@@ -79,6 +93,7 @@ const Users = () => {
       maxWidth="sm"
       sx={{ marginBottom: 100, marginTop: 4 }}
       component={"form"}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Stack sx={{ flexDirection: "row", gap: 2 }}>
         <List subheader={<ListSubheader>USERS</ListSubheader>}>

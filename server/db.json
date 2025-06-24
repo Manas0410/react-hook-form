@@ -162,6 +162,41 @@
         }
       ],
       "id": 3
+    },
+    {
+      "name": "Manas Srivastava",
+      "email": "manasshrivastava0410@gmail.com",
+      "states": [
+        "1",
+        "2"
+      ],
+      "languagesSpoken": [
+        "1",
+        "2",
+        "3"
+      ],
+      "gender": "1",
+      "skills": [
+        "1",
+        "4"
+      ],
+      "registrationDateAndTime": "2025-06-24T08:12:44.587Z",
+      "formerEmploymentPeriod": [
+        "2025-06-24T08:12:44.587Z",
+        "2025-06-24T08:12:44.587Z"
+      ],
+      "salaryRange": [
+        90,
+        100
+      ],
+      "variant": "create",
+      "isTeacher": true,
+      "students": [
+        {
+          "name": "lwsd"
+        }
+      ],
+      "id": 4
     }
   ]
 }
