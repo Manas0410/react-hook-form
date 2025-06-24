@@ -61,6 +61,12 @@ const Users = () => {
   const isTeacher = useWatch({ control, name: "isTeacher" });
 
   useEffect(() => {
+    if (userQuery.data) {
+      reset(userQuery.data);
+    }
+  }, [userQuery.data, reset]);
+
+  useEffect(() => {
     if (!isTeacher) {
       replace([]);
       // students:undefined
@@ -69,7 +75,11 @@ const Users = () => {
   }, [isTeacher, replace, unregister]);
 
   return (
-    <Container maxWidth="sm" sx={{ marginBottom: 100 }} component={"form"}>
+    <Container
+      maxWidth="sm"
+      sx={{ marginBottom: 100, marginTop: 4 }}
+      component={"form"}
+    >
       <Stack sx={{ flexDirection: "row", gap: 2 }}>
         <List subheader={<ListSubheader>USERS</ListSubheader>}>
           {usersQuery.data?.map((user) => (

@@ -86,5 +86,6 @@ export const useUser = (id: string) => {
         students: data.students,
       };
     },
+    enabled: !!id,
   });
 };
